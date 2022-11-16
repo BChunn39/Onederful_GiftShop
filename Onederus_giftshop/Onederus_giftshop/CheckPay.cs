@@ -12,7 +12,7 @@ namespace Onederus_giftshop
 
         public override void GetTotal()
         {
-            base.GetTotal();
+            GetTotal();
             if (paymentMethod == "Check")
             {
                 Console.WriteLine("Enter check number");
