@@ -12,11 +12,11 @@ namespace Onederus_giftshop
         public DateTime cardExpiration { get; set; }
         public int cvv { get; set; }
 
-        public override void GetTotal()
+        public override void GetTotalCost()
         {
-            GetTotal();
+            GetTotalCost();
 
-            if (paymentMethod == "Credit Card")
+            if (paymentType == "Credit Card")
             {
                 Console.WriteLine("Enter credit card number:");
                 creditCardNumber = int.Parse(Console.ReadLine());

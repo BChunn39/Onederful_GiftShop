@@ -10,10 +10,10 @@ namespace Onederus_giftshop
     {
         public int checkNumber { get; set; }
 
-        public override void GetTotal()
+        public override void GetTotalCost()
         {
-            GetTotal();
-            if (paymentMethod == "Check")
+            GetTotalCost();
+            if (paymentType == "Check")
             {
                 Console.WriteLine("Enter check number");
                 checkNumber = int.Parse(Console.ReadLine());
