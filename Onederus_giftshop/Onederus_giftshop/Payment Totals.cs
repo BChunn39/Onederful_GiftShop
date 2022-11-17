@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Onederus_giftshop
 {
-    internal class Payment_Totals
+    public class Payment_Totals
     {
-        static string GetTotalCost()
+        public override string GetTotalCost()
         {
             double SubTotal = 0;
             double Tax = SubTotal * .06;
