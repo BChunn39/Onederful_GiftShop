@@ -11,10 +11,10 @@ namespace Onederus_giftshop
         public decimal cashTendered { get; set; }
         public decimal changeDue { get; set; }
 
-        public override void GetTotal()
+        public override void GetTotalCost()
         {
-            GetTotal();
-            if (paymentMethod == "Cash")
+            GetTotalCost();
+            if (paymentType == "Cash")
             {
                 Console.WriteLine("Cash tendered:");
                 cashTendered = decimal.Parse(Console.ReadLine());
