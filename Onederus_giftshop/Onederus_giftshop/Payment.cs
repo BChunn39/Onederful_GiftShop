@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Onederus_giftshop
 {
-    public static class Payment
+    public class Payment
     {
         private static double subTotal;
         private static double tax;
@@ -22,14 +22,14 @@ namespace Onederus_giftshop
         {
             double subTotal = SubTotal;
             double tax = subTotal * Tax;
-            grandTotal = Math.Round((subTotal + tax), 2, MidpointRounding.AwayFromZero); // this should 
+            grandTotal = Math.Round((subTotal + tax), 2, MidpointRounding.AwayFromZero); // this should work
 
             return grandTotal;
         }
 
-
-        public static int SelectPaymentType(double totalDue)
+        public void SelectPaymentType(double totalDue) 
         {
+            bool paymentOptionValid = false;
             string[] paymentOptions = new string[] { "Cash", "Check", "Card" };
 
             for (int i = 0; i < paymentOptions.Length; i++)
@@ -38,24 +38,30 @@ namespace Onederus_giftshop
                 Console.WriteLine($"{paymentNumber} {paymentOptions[i]}");
             }
 
-            Console.WriteLine("Please enter the number of selected payment type");
-            int paymentType = Convert.ToInt32(Console.ReadLine());
-
-            switch (paymentType) // if 1 - cash, if 2 - check, if 3 - card
+            do
             {
-                case 1:
-                    CashPayment(totalDue);
-                    break;
-                case 2:
-                    CheckPayment(totalDue);
-                    break;
-                case 3:
-                    CardPayment(totalDue);
-                    break;
-            }
-            return -1;
-        }
+                Console.WriteLine("Please enter the number of selected payment type");
+                int paymentType = Convert.ToInt32(Console.ReadLine());
 
+                if (paymentType >= 1 && paymentType <= 3)
+                {
+                    paymentOptionValid = true;
+                    switch (paymentType) // if 1 - cash, if 2 - check, if 3 - card
+                    {
+                        case 1:
+                            CashPayment(totalDue);
+                            break;
+                        case 2:
+                            CheckPayment(totalDue);
+                            break;
+                        case 3:
+                            CardPayment(totalDue);
+                            break;
+                    }
+                }
+
+            } while (paymentOptionValid == false);
+        }
 
         public static double CashPayment(double grandTotal)
         {
@@ -100,7 +106,7 @@ namespace Onederus_giftshop
             do
             {
                 Console.WriteLine("Enter credit card number (16 digits):");
-                int CCinput = UserInputValidation.ValidateInt(Console.ReadLine()); //need to update this once we get inputvalidation
+                int CCinput = int.Parse(Console.ReadLine());
 
                 int lengthCardInput = CCinput.ToString().Length;
 
@@ -126,7 +132,7 @@ namespace Onederus_giftshop
             do
             {
                 Console.WriteLine("Enter CVV (3 digits):");
-                int cvvInput = UserInputValidation.ValidateInt(Console.ReadLine()); //need to update this once we get validation method
+                int cvvInput = int.Parse(Console.ReadLine());
 
                 int lengthCVVInput = cvvInput.ToString().Length;
 
