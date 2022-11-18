@@ -27,8 +27,9 @@ namespace Onederus_giftshop
             return grandTotal;
         }
 
-        public void SelectPaymentType(double totalDue) 
+        public static int SelectPaymentType(double totalDue) 
         {
+            int paymentType;
             bool paymentOptionValid = false;
             string[] paymentOptions = new string[] { "Cash", "Check", "Card" };
 
@@ -41,7 +42,7 @@ namespace Onederus_giftshop
             do
             {
                 Console.WriteLine("Please enter the number of selected payment type");
-                int paymentType = Convert.ToInt32(Console.ReadLine());
+                paymentType = Convert.ToInt32(Console.ReadLine());
 
                 if (paymentType >= 1 && paymentType <= 3)
                 {
@@ -51,6 +52,7 @@ namespace Onederus_giftshop
                         case 1:
                             CashPayment(totalDue);
                             break;
+                    break;
                         case 2:
                             CheckPayment(totalDue);
                             break;
@@ -60,7 +62,9 @@ namespace Onederus_giftshop
                     }
                 }
 
-            } while (paymentOptionValid == false);
+            } 
+            while (paymentOptionValid == false);
+            return paymentType;
         }
 
         public static double CashPayment(double grandTotal)
@@ -69,7 +73,7 @@ namespace Onederus_giftshop
 
             if (cashTendered > grandTotal)
             {
-                double changeDue = cashTendered - grandTotal;
+                double changeDue = Math.Round((cashTendered - grandTotal), 2, MidpointRounding.AwayFromZero);
                 Console.WriteLine($"Change Due: {changeDue}");
                 return changeDue;
             }
