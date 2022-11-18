@@ -1,4 +1,4 @@
-﻿using Onederus_giftshop;
+using Onederus_giftshop;
 
 
 ///Testing Methods in Payment Class
@@ -16,4 +16,3 @@ Console.WriteLine($"Grand Total: {testtotalDue}\n");
 int paymentMethod = Payment.SelectPaymentType(testtotalDue);
 Console.WriteLine($"Payment Method = {paymentMethod}");
 // if 1 - cash, if 2 - check, if 3 - card
-
