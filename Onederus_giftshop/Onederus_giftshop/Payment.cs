@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -104,6 +105,7 @@ namespace Onederus_giftshop
             int validCVVLength = 3;
             bool validCardNum = false;
             bool validCVV = false;
+            bool validExp = false;
 
             // will need to do a loop for each of these sections
 
@@ -126,12 +128,24 @@ namespace Onederus_giftshop
             }
             while (validCardNum == false);
 
+            do
+            {
+                Console.WriteLine("Enter expiration month:");
 
-            Console.WriteLine("Enter expiration date:");
-            DateTime cardExpiration = DateTime.Parse(Console.ReadLine());
-            //if mm/yy is < current date
-            //how to handle year and month formatting....
-            // if non numeric entry
+                int ddExpMonth = int.Parse(Console.ReadLine());
+                int ddExpYear = int.Parse(Console.ReadLine()); //need int validation
+
+                validExp = InputValidation.IsValidDate(ddExpMonth, ddExpYear);
+
+                DateTime expiry = new DateTime(Convert.ToInt32(ddExpYear),
+                               Convert.ToInt32(ddExpMonth),
+                               1);
+
+                string dateformatted = expiry.ToString("MM/yyyy"); //this hasn't been tested
+
+
+            } while (validExp == false);
+
 
             do
             {
