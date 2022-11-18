@@ -13,6 +13,7 @@ Console.WriteLine($"Tax: {Payment.Tax}");
 double testtotalDue = Payment.GetTotalCost(testsubTotal);
 Console.WriteLine($"Grand Total: {testtotalDue}\n");
 
-//selectPayment
-//int paymentSelected = Payment.SelectPaymentType(testtotalDue);
+int paymentMethod = Payment.SelectPaymentType(testtotalDue);
+Console.WriteLine($"Payment Method = {paymentMethod}");
+// if 1 - cash, if 2 - check, if 3 - card
 
