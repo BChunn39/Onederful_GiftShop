@@ -1,16 +1,14 @@
 using Onederus_giftshop;
 
-///Testing Methods in Payment Class
-//show test subtotal
 
-
-Console.WriteLine($"Subtotal: {testSubTotal}");
+double subTotalTest = 20.00;
+Console.WriteLine($"Subtotal: {subTotalTest}");
 
 //show tax for testing
 Console.WriteLine($"Tax: {Payment.Tax}");
 
 //show total due for testing
-double testtotalDue = Payment.GetTotalCost(testSubTotal);
+double testtotalDue = Payment.GetTotalCost(subTotalTest);
 Console.WriteLine($"Grand Total: {testtotalDue}\n");
 
 //show mayment method (1 cash, 2 check, 3 card)
