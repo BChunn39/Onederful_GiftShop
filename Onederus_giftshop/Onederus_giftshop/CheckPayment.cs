@@ -8,13 +8,10 @@ namespace Onederus_giftshop
         public void GetCheckNumber()
         {
             bool validCheckNum = false;
-
             while (validCheckNum == false)
             {
                 Console.WriteLine("Enter 3 digit check number:");
-
-                int checkNumber = InputValidation.IsInt();
-
+                CheckNum = InputValidation.IsInt();
                 int checkNumLength = CheckNum.ToString().Length;
 
                 if (checkNumLength != validCheckNumLength)
@@ -24,7 +21,6 @@ namespace Onederus_giftshop
                 else
                 {
                     validCheckNum = true;
-                    CheckNum = checkNumber;
                 }
             }
         }
