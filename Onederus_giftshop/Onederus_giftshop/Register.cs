@@ -54,6 +54,7 @@ namespace Onederus_giftshop
 
                         case 2:
                             CheckPayment check = new CheckPayment();
+                            AcceptAmountDueForNonCashPayment(GrandTotal, cart);
                             check.GetPaymentInfo(GrandTotal);
                             Console.Clear();
                             PrintReciept(cart, check);
@@ -61,6 +62,7 @@ namespace Onederus_giftshop
 
                         case 3:
                             CardPayment card = new CardPayment();
+                            AcceptAmountDueForNonCashPayment(GrandTotal, cart);
                             card.GetPaymentInfo(GrandTotal);
                             Console.Clear();
                             PrintReciept(cart, card);
@@ -138,7 +140,7 @@ namespace Onederus_giftshop
             GetTotalCost(cart);
             DisplayReciept(cart);
             DisplayPayTypes();
-            AcceptAmountDueForNonCashPayment(GrandTotal, cart);
+            SelectPaymentType(cart);
         }
 
         public void PrintReciept(List<GiftProduct> cart, CardPayment payment)
