@@ -1,6 +1,4 @@
-
 using Onederus_giftshop;
-
 
 Menu menu = new Menu();
 menu.GiftList();

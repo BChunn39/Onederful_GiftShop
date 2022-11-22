@@ -1,11 +1,6 @@
-
-    public class CardPayment :IPayment
-
-
-
 namespace Onederus_giftshop
 {
-
+    public class CardPayment : IPayment
     {
         const int validCardLength = 16;
         const int validCvvLength = 3;
@@ -31,7 +26,6 @@ namespace Onederus_giftshop
 
         */
         public long GetCardNumber()
-
         {
             bool validCardNum = false;
 
@@ -52,7 +46,6 @@ namespace Onederus_giftshop
 
 
         public string GetCardExp()
-
         {
             bool monthCaptured = false;
             bool yearCaptured = false;
@@ -96,7 +89,6 @@ namespace Onederus_giftshop
             return CardExp;
         }
 
-
         public int GetCardCvv()
 
         {
@@ -117,7 +109,6 @@ namespace Onederus_giftshop
             return Cvv;
         }
 
-
         public void GetPaymentInfo(double grandTotal)
         {
 
@@ -126,8 +117,5 @@ namespace Onederus_giftshop
             Cvv = GetCardCvv();
             LastFour = $"**** **** **** {Convert.ToString(CardNumber).Replace(" ", "").Substring(12, 4)}";
         }
-
-
     }
-
 }

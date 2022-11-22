@@ -1,25 +1,11 @@
-
-
 namespace Onederus_giftshop
 {
     public class CheckPayment: IPayment
     {
         const int validCheckNumLength = 3;
         public int CheckNum { get; set; }
-        public int RoutingNumber { get; set; }
-        public int AccountNumbr { get; set; }
 
-        /*
-        public void CheckPay(double totalDue)
-
-        {
-            bool continueWithCheck = Payment.NonCashTransaction(totalDue);
-            GetCheckNumber();
-        }
-
-        */
         public void GetCheckNumber()
-
         {
             bool validCheckNum = false;
 
@@ -35,23 +21,17 @@ namespace Onederus_giftshop
                 {
                     validCheckNum = false;
                 }
-
                 else
                 {
                     validCheckNum = true;
                     CheckNum = checkNumber;
                 }
             }
-
         }
 
-
         public void GetPaymentInfo(double grandTotal)
-        {
+        {   
             GetCheckNumber();
-
-
-
         }
     }
 }
