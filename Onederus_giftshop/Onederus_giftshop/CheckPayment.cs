@@ -1,4 +1,5 @@
-﻿using System;
+
+
 namespace Onederus_giftshop
 {
     public class CheckPayment: IPayment
@@ -10,25 +11,31 @@ namespace Onederus_giftshop
 
         /*
         public void CheckPay(double totalDue)
+
         {
             bool continueWithCheck = Payment.NonCashTransaction(totalDue);
             GetCheckNumber();
         }
+
         */
         public void GetCheckNumber()
+
         {
             bool validCheckNum = false;
 
             while (validCheckNum == false)
             {
                 Console.WriteLine("Enter 3 digit check number:");
+
                 int checkNumber = InputValidation.IsInt();
+
                 int checkNumLength = CheckNum.ToString().Length;
 
                 if (checkNumLength != validCheckNumLength)
                 {
                     validCheckNum = false;
                 }
+
                 else
                 {
                     validCheckNum = true;
@@ -42,6 +49,7 @@ namespace Onederus_giftshop
         public void GetPaymentInfo(double grandTotal)
         {
             GetCheckNumber();
+
 
 
         }
