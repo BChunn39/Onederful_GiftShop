@@ -1,6 +1,7 @@
 
 using Onederus_giftshop;
 
+
 Menu menu = new Menu();
 menu.GiftList();
 
@@ -14,3 +15,4 @@ if (menuReply == "y")
     menu.GetLineTotal();
 }
 else Console.WriteLine("Thank you, come again!");
+

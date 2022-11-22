@@ -1,33 +1,57 @@
-﻿namespace Onederus_giftshop
+
+
+namespace Onederus_giftshop
 {
-    public static class CheckPayment
+    public class CheckPayment: IPayment
     {
         const int validCheckNumLength = 3;
-        public static int CheckNum { get; set; }
+        public int CheckNum { get; set; }
+        public int RoutingNumber { get; set; }
+        public int AccountNumbr { get; set; }
 
-        public static void CheckPay(double totalDue)
+        /*
+        public void CheckPay(double totalDue)
+
         {
             bool continueWithCheck = Payment.NonCashTransaction(totalDue);
             GetCheckNumber();
         }
 
-        public static int GetCheckNumber()
+        */
+        public void GetCheckNumber()
+
         {
             bool validCheckNum = false;
 
             while (validCheckNum == false)
             {
                 Console.WriteLine("Enter 3 digit check number:");
-                CheckNum = InputValidation.IsInt();
+
+                int checkNumber = InputValidation.IsInt();
+
                 int checkNumLength = CheckNum.ToString().Length;
 
                 if (checkNumLength != validCheckNumLength)
                 {
                     validCheckNum = false;
                 }
-                else validCheckNum = true;
+
+                else
+                {
+                    validCheckNum = true;
+                    CheckNum = checkNumber;
+                }
             }
-            return CheckNum;
+
+        }
+
+
+        public void GetPaymentInfo(double grandTotal)
+        {
+            GetCheckNumber();
+
+
+
         }
     }
 }
