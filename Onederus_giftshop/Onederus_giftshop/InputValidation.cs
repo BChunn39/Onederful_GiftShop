@@ -1,7 +1,4 @@
-
-
 namespace Onederus_giftshop
-
 {
     public static class InputValidation
     {
@@ -114,4 +111,3 @@ namespace Onederus_giftshop
     }
 
 }
-

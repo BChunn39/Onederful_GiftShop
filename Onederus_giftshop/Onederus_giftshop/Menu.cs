@@ -30,7 +30,6 @@
             {
                 Console.WriteLine($"{i + 1}. {ListOfProducts[i].Name}: ${ListOfProducts[i].Price}");
             }
-
         }
 
         public void GetLineTotal(int n, double quantity)
