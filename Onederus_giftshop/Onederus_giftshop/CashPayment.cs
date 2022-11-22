@@ -1,15 +1,12 @@
-﻿namespace Onederus_giftshop
+namespace Onederus_giftshop
 {
-    public static class CashPayment
+    public class CashPayment :IPayment
     {
+        public double CashTendered { get; set; }
+        public double ChangeDue { get; set; }
 
-        public static double CashTendered { get; set; }
-        public static double ChangeDue { get; set; }
-
-        public static double CashPay(double grandTotal)
+        public void GetPaymentInfo(double grandTotal)
         {
-            CashTendered = 0.00;
-            ChangeDue = Math.Round((CashTendered - grandTotal), 2, MidpointRounding.AwayFromZero);
             bool cashEnough = false;
 
             while (cashEnough == false)
@@ -20,11 +17,17 @@
                 if (CashTendered < grandTotal)
                 {
                     Console.WriteLine("Not enough funds\n");
-                }
-                else cashEnough = true;
-            }
-            return ChangeDue;
-        }
 
+                    Console.WriteLine($"you need {grandTotal - CashTendered:c} more");
+                }
+                else
+                {
+                    cashEnough = true;
+                    ChangeDue = Math.Round((CashTendered - grandTotal), 2, MidpointRounding.AwayFromZero);
+
+                }
+            }
+
+        }
     }
 }

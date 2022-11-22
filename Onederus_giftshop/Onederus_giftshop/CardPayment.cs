@@ -1,13 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using Onederus_giftshop;
-using System;
-using System.Data;
-using System.Globalization;
-using System.Xml.Linq;
-
 namespace Onederus_giftshop
 {
-    public static class CardPayment
+    public class CardPayment : IPayment
     {
         const int validCardLength = 16;
         const int validCvvLength = 3;
@@ -17,7 +10,13 @@ namespace Onederus_giftshop
         public static string CardExp { get; set; }
         public static int Cvv { get; set; }
 
-        public static void CardPay(double totalDue) //calls all card validation methods
+        public string LastFour { get; set; }
+
+
+        //made a few adjustments see method GetPaymentInformation
+        /*
+        public void CardPay(double totalDue) //calls all card validation methods
+
         {
             bool continueWithCard = Payment.NonCashTransaction(totalDue);
             GetCardNumber();
@@ -25,7 +24,8 @@ namespace Onederus_giftshop
             GetCardCvv();
         }
 
-        public static long GetCardNumber()
+        */
+        public long GetCardNumber()
         {
             bool validCardNum = false;
 
@@ -44,7 +44,8 @@ namespace Onederus_giftshop
             return CardNumber;
         }
 
-        public static string GetCardExp()
+
+        public string GetCardExp()
         {
             bool monthCaptured = false;
             bool yearCaptured = false;
@@ -88,7 +89,8 @@ namespace Onederus_giftshop
             return CardExp;
         }
 
-        public static int GetCardCvv()
+        public int GetCardCvv()
+
         {
             bool validCvv = false;
 
@@ -106,6 +108,14 @@ namespace Onederus_giftshop
             }
             return Cvv;
         }
-    }
 
+        public void GetPaymentInfo(double grandTotal)
+        {
+
+            CardNumber = GetCardNumber();
+            CardExp = GetCardExp();
+            Cvv = GetCardCvv();
+            LastFour = $"**** **** **** {Convert.ToString(CardNumber).Replace(" ", "").Substring(12, 4)}";
+        }
+    }
 }
