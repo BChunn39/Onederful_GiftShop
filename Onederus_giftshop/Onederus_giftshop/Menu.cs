@@ -39,17 +39,21 @@ namespace Onederus_giftshop
 
         }
 
-        public void GetLineTotal()
+        public void GetLineTotal(int n, double quantity)
         {
-            Console.WriteLine("Please enter the number for the item you wish to purchase.");
-            int n = Convert.ToInt32(Console.ReadLine()) -1;
-
-            Console.WriteLine("How many would you like to purchase?");
-            int quantity = Convert.ToInt32(Console.ReadLine());
-
             double lineTotal = quantity * ListOfProducts[n].Price;
 
             Console.WriteLine($"{quantity} {ListOfProducts[n].Name}s equals {lineTotal}");
+        }
+
+        public List<GiftProduct> AddToCart(List<GiftProduct> cart, int n, double quantity)
+        {
+            for (int i = 1; i <= quantity; i++)
+            {
+                cart.Add(ListOfProducts[n]);
+            }
+
+            return cart;
         }
     }
 }
