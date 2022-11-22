@@ -5,7 +5,7 @@ Register reciept = new Register();
 List<GiftProduct> shoppingCart = new List<GiftProduct>();
 menu.GiftList();
 
-Console.WriteLine("Hello, welcome to the Onederful Gift Shop. Would you like to view the list of items for sale? (y/n)");
+Console.WriteLine("Hello, welcome to the Onederful Gift Shop!\n Would you like to view the list of items for sale? (y/n)");
 string menuReply = InputValidation.IsString(Console.ReadLine());
 
 if (menuReply == "y")
