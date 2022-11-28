@@ -11,6 +11,14 @@ namespace Onederus_giftshop
         public static int Cvv { get; set; }
         public string LastFour { get; set; }
 
+        public void GetPaymentInfo(double grandTotal)
+        {
+            CardNumber = GetCardNumber();
+            CardExp = GetCardExp();
+            Cvv = GetCardCvv();
+            LastFour = $"**** **** **** {Convert.ToString(CardNumber).Replace(" ", "").Substring(12, 4)}";
+        }
+
         public long GetCardNumber()
         {
             bool validCardNum = false;
@@ -91,15 +99,6 @@ namespace Onederus_giftshop
                 else validCvv = true;
             }
             return Cvv;
-        }
-
-        public void GetPaymentInfo(double grandTotal)
-        {
-
-            CardNumber = GetCardNumber();
-            CardExp = GetCardExp();
-            Cvv = GetCardCvv();
-            LastFour = $"**** **** **** {Convert.ToString(CardNumber).Replace(" ", "").Substring(12, 4)}";
         }
     }
 }

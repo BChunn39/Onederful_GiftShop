@@ -1,46 +1,53 @@
 using Onederus_giftshop;
+using System.Data;
 
 Menu menu = new Menu();
-Register reciept = new Register();
+Register receipt = new Register();
 List<GiftProduct> shoppingCart = new List<GiftProduct>();
 menu.GiftList();
 
-Console.WriteLine("Hello, welcome to the Onederful Gift Shop!\n Would you like to view the list of items for sale? (y/n)");
-string menuReply = InputValidation.IsString(Console.ReadLine());
+bool isShopping = true;
 
-if (menuReply == "y")
+while (isShopping)
 {
+    Console.WriteLine("Welcome to the Onederful Gift Shop!\n ");
     menu.DisplayGiftShopList();
-}
-
-else
-{
-    Console.WriteLine("Thank you, come again!");
-}
-
-while (true)
-{
-    Console.WriteLine("Please enter the number for the item you wish to purchase.");
-    int n = InputValidation.IsInt();
-    int i = n - 1;
-    if (n >= 0 && n <= menu.ListOfProducts.Count)
+ 
+    while (true)
     {
-        Console.WriteLine("How many would you like to purchase?");
-        double quantity = InputValidation.IsDouble();
-        menu.GetLineTotal(i, quantity);
-        menu.AddToCart(shoppingCart, i, quantity);
-
-        Console.WriteLine("Would you like to continue? y/n");
-        string yn = InputValidation.IsString(Console.ReadLine());
-        if (yn != "y")
+        Console.WriteLine("Please enter the number of the item you wish to purchase.");
+        int n = InputValidation.IsInt();
+        int i = n - 1;
+        if (n >= 0 && n <= menu.ListOfProducts.Count)
         {
-            reciept.DisplayTotal(shoppingCart);
-            break;
+            Console.WriteLine("How many would you like to purchase?");
+            double quantity = InputValidation.IsDouble();
+            menu.GetLineTotal(i, quantity);
+            menu.AddToCart(shoppingCart, i, quantity);
+
+            Console.WriteLine("Would you like to continue shopping? y/n");
+            string keepShopping = InputValidation.IsString(Console.ReadLine());
+            if (keepShopping != "y")
+            {
+                receipt.DisplayTotal(shoppingCart);
+                break;
+            }
         }
+        else
+        {
+            Console.WriteLine("Please enter a valid menu option.");
+        }
+    }
+
+    Console.WriteLine("Would you like to start a new order?");
+    string newOrder = InputValidation.IsString(Console.ReadLine());
+    if (newOrder != "y")
+    {
+        isShopping = false;
     }
     else
     {
-        Console.WriteLine("please enter a valid number");
+        shoppingCart.Clear();
+        Console.Clear();
     }
-
 }

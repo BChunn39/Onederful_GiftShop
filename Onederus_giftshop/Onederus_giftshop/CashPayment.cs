@@ -1,6 +1,6 @@
 namespace Onederus_giftshop
 {
-    public class CashPayment :IPayment
+    public class CashPayment : IPayment
     {
         public double CashTendered { get; set; }
         public double ChangeDue { get; set; }
@@ -16,18 +16,14 @@ namespace Onederus_giftshop
 
                 if (CashTendered < grandTotal)
                 {
-                    Console.WriteLine("Not enough funds\n");
-
-                    Console.WriteLine($"you need {grandTotal - CashTendered:c} more");
+                    Console.WriteLine($"Amount cannot be less than {grandTotal:c}. Please re-enter.\n");
                 }
                 else
                 {
                     cashEnough = true;
                     ChangeDue = Math.Round((CashTendered - grandTotal), 2, MidpointRounding.AwayFromZero);
-
                 }
             }
-
         }
     }
 }
