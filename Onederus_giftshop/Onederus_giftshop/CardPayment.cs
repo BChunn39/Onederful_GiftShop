@@ -11,7 +11,6 @@ namespace Onederus_giftshop
         public static int Cvv { get; set; }
         public string LastFour { get; set; }
 
-
         public long GetCardNumber()
         {
             bool validCardNum = false;

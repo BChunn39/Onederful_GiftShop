@@ -72,9 +72,7 @@ namespace Onederus_giftshop
                             throw new ArgumentOutOfRangeException("Unknown value");
                     }
                 }
-
             }
-
         }
 
         public bool AcceptAmountDueForNonCashPayment(double grandTotal, List<GiftProduct> cart)
@@ -145,8 +143,8 @@ namespace Onederus_giftshop
 
         public void PrintReciept(List<GiftProduct> cart, CardPayment payment)
         {
-            Console.WriteLine("would you like to print the reciept?");
-            string print = Console.ReadLine();
+            Console.WriteLine("Would you like to print the reciept?");
+            string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
                 File.Create(MacFilePath);
@@ -170,8 +168,8 @@ namespace Onederus_giftshop
         
         public void PrintReciept(List<GiftProduct> cart, CheckPayment payment)
         {
-            Console.WriteLine("would you like to print the reciept?");
-            string print = Console.ReadLine();
+            Console.WriteLine("Would you like to print the reciept?");
+            string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
                 File.Create(MacFilePath);
@@ -196,7 +194,7 @@ namespace Onederus_giftshop
         public void PrintReciept(List<GiftProduct> cart, CashPayment payment)
         {
             Console.WriteLine("would you like to print the reciept?");
-            string print = Console.ReadLine();
+            string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
                 StreamWriter recieptWriter = new StreamWriter(MacFilePath, false);
