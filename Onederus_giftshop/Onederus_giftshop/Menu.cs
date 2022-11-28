@@ -24,7 +24,7 @@
         }
         public void DisplayGiftShopList()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("These are the available items for sale in the gift shop: ");
             for (int i = 0; i < ListOfProducts.Count; i++)
             {
@@ -36,7 +36,7 @@
         {
             double lineTotal = quantity * ListOfProducts[n].Price;
 
-            Console.WriteLine($"{quantity} {ListOfProducts[n].Name}s equals {lineTotal:c}");
+            Console.WriteLine($"Added {quantity} {ListOfProducts[n].Name} for {lineTotal:c}");
         }
 
         public List<GiftProduct> AddToCart(List<GiftProduct> cart, int n, double quantity)
@@ -45,7 +45,6 @@
             {
                 cart.Add(ListOfProducts[n]);
             }
-
             return cart;
         }
     }

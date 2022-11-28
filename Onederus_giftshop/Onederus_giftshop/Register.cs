@@ -9,8 +9,8 @@ namespace Onederus_giftshop
         public const double TaxAmount = .06;
         public double Tax { get; private set; }
         public double GrandTotal { get; private set; }
-        const string WindowsFilePath = @"C:\Stuff\OnderousReciept.txt";
-        const string MacFilePath = @"/Users/anh/Desktop/Test/OnderousReciept1.txt";
+        const string WindowsFilePath = @"C:\Stuff\Onderousreceipt.txt";
+        const string MacFilePath = @"/Users/anh/Desktop/Test/Onderousreceipt1.txt";
 
         public void GetTotalCost(List<GiftProduct> cart)
         {
@@ -30,7 +30,7 @@ namespace Onederus_giftshop
             }
         }
 
-        public void SelectPaymentType(List<GiftProduct> cart) //passing through total due so that it can be passed to payment methods when selected
+        public void SelectPaymentType(List<GiftProduct> cart)
         {
             int payType = 0;
             bool isValidPayOpt = false;
@@ -49,7 +49,7 @@ namespace Onederus_giftshop
                             CashPayment cash = new CashPayment();
                             cash.GetPaymentInfo(GrandTotal);
                             Console.Clear();
-                            PrintReciept(cart, cash);
+                            PrintReceipt(cart, cash);
                             break;
 
                         case 2:
@@ -57,7 +57,7 @@ namespace Onederus_giftshop
                             AcceptAmountDueForNonCashPayment(GrandTotal, cart);
                             check.GetPaymentInfo(GrandTotal);
                             Console.Clear();
-                            PrintReciept(cart, check);
+                            PrintReceipt(cart, check);
                             break;
 
                         case 3:
@@ -65,7 +65,7 @@ namespace Onederus_giftshop
                             AcceptAmountDueForNonCashPayment(GrandTotal, cart);
                             card.GetPaymentInfo(GrandTotal);
                             Console.Clear();
-                            PrintReciept(cart, card);
+                            PrintReceipt(cart, card);
                             break;
 
                         default:
@@ -83,7 +83,7 @@ namespace Onederus_giftshop
             {
                 Console.WriteLine($"\nTo process your payment for {GrandTotal}: Press 'y'.");
                 Console.WriteLine("To select a different payment method: Press 'n'.");
-                Console.WriteLine("To stop shopping and quit the program: Press any other key.");
+                Console.WriteLine("To stop shopping and exit the program: Press any other key.");
 
                 string processTransaction = InputValidation.IsString(Console.ReadLine());
 
@@ -109,21 +109,22 @@ namespace Onederus_giftshop
         // display credit card receipt
         public string DisplayPayment(CardPayment card)
         {
-            return $"{GrandTotal:c} paid by credit card with card #{card.LastFour}\n";
+            return $"{GrandTotal:c} paid with credit card #{card.LastFour}\n";
         }
-        // display check on reciept
+        // display check on receipt
         public string DisplayPayment(CheckPayment check)
         {
-            return $"{GrandTotal:c} paid by check \n with check #{check.CheckNum}\n";
+            return $"{GrandTotal:c} paid with check #{check.CheckNum}\n";
         }
         // display cash receipt
         public string DisplayPayment(CashPayment cash)
         {
-            return $"{GrandTotal:c} paid with {cash.CashTendered:c} cash. Your change is {cash.ChangeDue:C}\n";
+            return $"{GrandTotal:c} paid with {cash.CashTendered:c} cash. Change due is {cash.ChangeDue:C}\n";
         }
 
-        public void DisplayReciept(List<GiftProduct> cart)
+        public void Displayreceipt(List<GiftProduct> cart)
         {
+            Console.Clear();
             foreach (GiftProduct item in cart)
             {
                 Console.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
@@ -136,81 +137,81 @@ namespace Onederus_giftshop
         public void DisplayTotal(List<GiftProduct> cart)
         {
             GetTotalCost(cart);
-            DisplayReciept(cart);
+            Displayreceipt(cart);
             DisplayPayTypes();
             SelectPaymentType(cart);
         }
 
-        public void PrintReciept(List<GiftProduct> cart, CardPayment payment)
+        public void PrintReceipt(List<GiftProduct> cart, CardPayment payment)
         {
-            Console.WriteLine("Would you like to print the reciept?");
             string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
-                File.Create(MacFilePath);
-                StreamWriter recieptWriter = new StreamWriter(MacFilePath, false);
+                //File.Create(WindowsFilePath);
+                StreamWriter receiptWriter = new StreamWriter(WindowsFilePath, false);
                 foreach (GiftProduct item in cart)
                 {
-                    recieptWriter.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
+                    receiptWriter.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
                 }
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Subtotal", $"{SubTotal:c}"));
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Tax", $"{Tax:c}"));
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Total", $"{GrandTotal:c}"));
-                recieptWriter.Flush();
-                recieptWriter.Close();
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Subtotal", $"{SubTotal:c}"));
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Tax", $"{Tax:c}"));
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Total", $"{GrandTotal:c}"));
+                receiptWriter.Flush();
+                receiptWriter.Close();
             }
             else
             {
-                DisplayReciept(cart);
+                Displayreceipt(cart);
                 Console.WriteLine(DisplayPayment(payment));
             }
         }
         
-        public void PrintReciept(List<GiftProduct> cart, CheckPayment payment)
+        public void PrintReceipt(List<GiftProduct> cart, CheckPayment payment)
         {
-            Console.WriteLine("Would you like to print the reciept?");
+            Console.WriteLine("Would you like a printed copy of your receipt?");
             string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
-                File.Create(MacFilePath);
-                StreamWriter recieptWriter = new StreamWriter(MacFilePath, false);
+                //File.Create(WindowsFilePath);
+                StreamWriter receiptWriter = new StreamWriter(WindowsFilePath, false);
                 foreach (GiftProduct item in cart)
                 {
-                    recieptWriter.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
+                    receiptWriter.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
                 }
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Subtotal", $"{SubTotal:c}"));
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Tax", $"{Tax:c}"));
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Total", $"{GrandTotal:c}"));
-                recieptWriter.Flush();
-                recieptWriter.Close();
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Subtotal", $"{SubTotal:c}"));
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Tax", $"{Tax:c}"));
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Total", $"{GrandTotal:c}"));
+                receiptWriter.Flush();
+                receiptWriter.Close();
             }
             else
             {
-                DisplayReciept(cart);
+                Displayreceipt(cart);
                 Console.WriteLine(DisplayPayment(payment));
             }
         }
 
-        public void PrintReciept(List<GiftProduct> cart, CashPayment payment)
+        public void PrintReceipt(List<GiftProduct> cart, CashPayment payment)
         {
-            Console.WriteLine("would you like to print the reciept?");
+            Console.WriteLine("Would you like a printed copy of your receipt?");
             string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
-                StreamWriter recieptWriter = new StreamWriter(MacFilePath, false);
+                //File.Create(WindowsFilePath);
+                StreamWriter receiptWriter = new StreamWriter(WindowsFilePath, false);
                 foreach (GiftProduct item in cart)
                 {
-                    recieptWriter.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
+                    receiptWriter.WriteLine(String.Format("{0,-10} | {1,-10}", $"{item.Name}", $"{item.Price:c}"));
                 }
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Subtotal", $"{SubTotal:c}"));
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Tax", $"{Tax:c}"));
-                recieptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Total", $"{GrandTotal:c}"));
-                recieptWriter.Flush();
-                recieptWriter.Close();
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Subtotal", $"{SubTotal:c}"));
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Tax", $"{Tax:c}"));
+                receiptWriter.WriteLine(String.Format("{0,15} {1,-10}", $"Total", $"{GrandTotal:c}"));
+                receiptWriter.Flush();
+                receiptWriter.Close();
             }
             else
             {
-                DisplayReciept(cart);
+                Displayreceipt(cart);
                 Console.WriteLine(DisplayPayment(payment));
             }
         }

@@ -5,6 +5,11 @@ namespace Onederus_giftshop
         const int validCheckNumLength = 3;
         public int CheckNum { get; set; }
 
+        public void GetPaymentInfo(double grandTotal)
+        {
+            GetCheckNumber();
+        }
+
         public int GetCheckNumber()
         {
             bool validCheckNum = false;
@@ -21,11 +26,6 @@ namespace Onederus_giftshop
                 else validCheckNum = true;
             }
             return CheckNum;
-        }
-
-        public void GetPaymentInfo(double grandTotal)
-        {   
-            GetCheckNumber();
         }
     }
 }
