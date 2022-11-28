@@ -54,6 +54,7 @@ namespace Onederus_giftshop
 
                         case 2:
                             CheckPayment check = new CheckPayment();
+                            AcceptAmountDueForNonCashPayment(GrandTotal, cart);
                             check.GetPaymentInfo(GrandTotal);
                             Console.Clear();
                             PrintReciept(cart, check);
@@ -61,6 +62,7 @@ namespace Onederus_giftshop
 
                         case 3:
                             CardPayment card = new CardPayment();
+                            AcceptAmountDueForNonCashPayment(GrandTotal, cart);
                             card.GetPaymentInfo(GrandTotal);
                             Console.Clear();
                             PrintReciept(cart, card);
@@ -70,9 +72,7 @@ namespace Onederus_giftshop
                             throw new ArgumentOutOfRangeException("Unknown value");
                     }
                 }
-
             }
-
         }
 
         public bool AcceptAmountDueForNonCashPayment(double grandTotal, List<GiftProduct> cart)
@@ -138,13 +138,13 @@ namespace Onederus_giftshop
             GetTotalCost(cart);
             DisplayReciept(cart);
             DisplayPayTypes();
-            AcceptAmountDueForNonCashPayment(GrandTotal, cart);
+            SelectPaymentType(cart);
         }
 
         public void PrintReciept(List<GiftProduct> cart, CardPayment payment)
         {
-            Console.WriteLine("would you like to print the reciept?");
-            string print = Console.ReadLine();
+            Console.WriteLine("Would you like to print the reciept?");
+            string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
                 File.Create(MacFilePath);
@@ -168,8 +168,8 @@ namespace Onederus_giftshop
         
         public void PrintReciept(List<GiftProduct> cart, CheckPayment payment)
         {
-            Console.WriteLine("would you like to print the reciept?");
-            string print = Console.ReadLine();
+            Console.WriteLine("Would you like to print the reciept?");
+            string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
                 File.Create(MacFilePath);
@@ -194,7 +194,7 @@ namespace Onederus_giftshop
         public void PrintReciept(List<GiftProduct> cart, CashPayment payment)
         {
             Console.WriteLine("would you like to print the reciept?");
-            string print = Console.ReadLine();
+            string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
                 StreamWriter recieptWriter = new StreamWriter(MacFilePath, false);

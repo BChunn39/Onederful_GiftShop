@@ -5,28 +5,22 @@ namespace Onederus_giftshop
         const int validCheckNumLength = 3;
         public int CheckNum { get; set; }
 
-        public void GetCheckNumber()
+        public int GetCheckNumber()
         {
             bool validCheckNum = false;
-
             while (validCheckNum == false)
             {
                 Console.WriteLine("Enter 3 digit check number:");
-
-                int checkNumber = InputValidation.IsInt();
-
+                CheckNum = InputValidation.IsInt();
                 int checkNumLength = CheckNum.ToString().Length;
 
                 if (checkNumLength != validCheckNumLength)
                 {
                     validCheckNum = false;
                 }
-                else
-                {
-                    validCheckNum = true;
-                    CheckNum = checkNumber;
-                }
+                else validCheckNum = true;
             }
+            return CheckNum;
         }
 
         public void GetPaymentInfo(double grandTotal)

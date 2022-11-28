@@ -9,22 +9,8 @@ namespace Onederus_giftshop
         public static long CardNumber { get; set; }
         public static string CardExp { get; set; }
         public static int Cvv { get; set; }
-
         public string LastFour { get; set; }
 
-
-        //made a few adjustments see method GetPaymentInformation
-        /*
-        public void CardPay(double totalDue) //calls all card validation methods
-
-        {
-            bool continueWithCard = Payment.NonCashTransaction(totalDue);
-            GetCardNumber();
-            GetCardExp();
-            GetCardCvv();
-        }
-
-        */
         public long GetCardNumber()
         {
             bool validCardNum = false;
@@ -43,7 +29,6 @@ namespace Onederus_giftshop
             }
             return CardNumber;
         }
-
 
         public string GetCardExp()
         {
@@ -90,7 +75,6 @@ namespace Onederus_giftshop
         }
 
         public int GetCardCvv()
-
         {
             bool validCvv = false;
 
