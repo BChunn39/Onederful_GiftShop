@@ -147,7 +147,6 @@ namespace Onederus_giftshop
             string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
-                //File.Create(WindowsFilePath);
                 StreamWriter receiptWriter = new StreamWriter(WindowsFilePath, false);
                 foreach (GiftProduct item in cart)
                 {
@@ -172,7 +171,6 @@ namespace Onederus_giftshop
             string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
-                //File.Create(WindowsFilePath);
                 StreamWriter receiptWriter = new StreamWriter(WindowsFilePath, false);
                 foreach (GiftProduct item in cart)
                 {
@@ -197,7 +195,6 @@ namespace Onederus_giftshop
             string print = InputValidation.IsString(Console.ReadLine());
             if (print == "y" || print == "yes")
             {
-                //File.Create(WindowsFilePath);
                 StreamWriter receiptWriter = new StreamWriter(WindowsFilePath, false);
                 foreach (GiftProduct item in cart)
                 {
